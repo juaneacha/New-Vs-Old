@@ -1,9 +1,24 @@
-   
+
+
 # code for Mann-Whitney U test 
-from scipy.stats import mannwhitneyu 
+from scipy.stats import mannwhitneyu
+import pandas as pd
+
+
+df = pd.read_csv('Wages from Ala Restaurant (05_09_2024 - 01_30_2025) - Sheet1.csv')
+print(df)
+
+oldMenu = df['Gross Earnings'][:6].astype(float)
+newMenu = df['Gross Earnings'][7:13].astype(float)
+
+#oldMenu = sorted(float(df['Gross Earnings']))[:7]
+#newMenu = sorted(float(df['Gross Earnings']))[8:13]
+
+print(oldMenu)
+print(newMenu)
 
 # perform mann whitney test 
-stat, p_value = mannwhitneyu(batch_1, batch_2) 
+stat, p_value = mannwhitneyu(oldMenu, newMenu) 
 print('Statistics=%.2f, p=%.2f' % (stat, p_value)) 
 
 # Level of significance 
