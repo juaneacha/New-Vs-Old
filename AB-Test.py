@@ -27,7 +27,7 @@ print('Statistics=%.2f, p=%.2f' % (stat, p_val))
 alpha = 0.05
 
 #Conclusion 
-#Introducing a New Menu can increase revenue by 5% to 10% according to Sling. Therefore:
+#Introducing a New Menu can increase revenue by 10% to 15% according to Sling. Therefore:
     #The null hypothesis is that new menu's revenue is GREATER than old menu's revenue
     #The alternate hypothesis is that new menu's revenue is LESS than old menu's revenue
 
