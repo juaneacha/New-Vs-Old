@@ -1,6 +1,6 @@
 
 
-# code for Mann-Whitney U test 
+#Code for Mann-Whitney U test 
 from scipy.stats import mannwhitneyu
 import pandas as pd
 
@@ -19,19 +19,19 @@ newMenu = df[df['Menu'] == 'New']['Gross Earnings']
 print(oldMenu)
 print(newMenu)
 
-# perform mann whitney test 
-stat, p_value = mannwhitneyu(newMenu, oldMenu, alternative='less') 
-print('Statistics=%.2f, p=%.2f' % (stat, p_value)) 
+#Perform mann whitney test 
+stat, p_val = mannwhitneyu(newMenu, oldMenu, alternative='less') 
+print('Statistics=%.2f, p=%.2f' % (stat, p_val)) 
 
-# Level of significance 
+#Level of significance 
 alpha = 0.05
 
-# Conclusion 
-# Introducing a New Menu can increase revenue by 5% to 10% according to Sling. Therefore:
-    # The null hypothesis is that new menu's revenue is GREATER than old menu's revenue
-    # The alternate hypothesis is that new menu's revenue is LESS than old menu's revenue
+#Conclusion 
+#Introducing a New Menu can increase revenue by 5% to 10% according to Sling. Therefore:
+    #The null hypothesis is that new menu's revenue is GREATER than old menu's revenue
+    #The alternate hypothesis is that new menu's revenue is LESS than old menu's revenue
 
-if p_value < alpha: 
+if p_val < alpha: 
     print('Reject Null Hypothesis (new menu`s revenue IS NOT greater than old menu`s)') 
 else: 
     print('Do Not Reject Null Hypothesis (new menu`s revenue IS greater than old menu`s)')
