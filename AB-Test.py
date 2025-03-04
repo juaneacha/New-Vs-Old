@@ -9,25 +9,29 @@ import pandas as pd
 df = pd.read_csv('Wages from Ala Restaurant (05_09_2024 - 01_30_2025) - Sheet1.csv')
 print(df)
 
-oldMenu = df['Gross Earnings'][:6].astype(float)
-newMenu = df['Gross Earnings'][7:13].astype(float)
+#Sampling the data for old and new menus
+df = df[:12]
+df['Gross Earnings'] = df['Gross Earnings'].astype(float)
+oldMenu = df[df['Menu'] == 'Old']['Gross Earnings']
+newMenu = df[df['Menu'] == 'New']['Gross Earnings']
 
-#Show data buckets
-#print(oldMenu)
-#print(newMenu)
+#Show data for old and new menus
+print(oldMenu)
+print(newMenu)
 
 # perform mann whitney test 
-stat, p_value = mannwhitneyu(newMenu, oldMenu, alternative='greater') 
+stat, p_value = mannwhitneyu(newMenu, oldMenu, alternative='less') 
 print('Statistics=%.2f, p=%.2f' % (stat, p_value)) 
 
 # Level of significance 
 alpha = 0.05
 
-# conclusion 
-#The null hypothesis is that revenue increases by 5 - 10% when the menu is changed
-#The alternate hypothesis is that revenue does not increase by at least 5%
+# Conclusion 
+# Introducing a New Menu can increase revenue by 5% to 10% according to Sling. Therefore:
+    # The null hypothesis is that new menu's revenue is GREATER than old menu's revenue
+    # The alternate hypothesis is that new menu's revenue is LESS than old menu's revenue
 
 if p_value < alpha: 
-    print('Reject Null Hypothesis (There IS NOT an a increase in revenue)') 
+    print('Reject Null Hypothesis (new menu`s revenue IS NOT greater than old menu`s)') 
 else: 
-    print('Do not Reject Null Hypothesis (There IS an a increase in revenue)')
+    print('Do Not Reject Null Hypothesis (new menu`s revenue IS greater than old menu`s)')
