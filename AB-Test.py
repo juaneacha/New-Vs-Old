@@ -3,6 +3,8 @@
 #Code for Mann-Whitney U test 
 from statistics import median
 from scipy.stats import mannwhitneyu
+import scipy.stats as st
+
 import pandas as pd
 import numpy as np
 
@@ -41,51 +43,35 @@ else:
 
 
 
+#Two Sample Mean Non-Parametric 95% Confidence Interval
 
 
+#Declare Dataset and Confidence Interval
+twoSampleDataset = list() 
+confidence = 0.95
 
-def nonparametric_confidence_interval(data, confidence=0.90, n_bootstrap=10000):
-    """
-    Calculates a non-parametric confidence interval using the percentile bootstrap method.
+#Generate 10,000 random samples means from both menu datasets and store in twoSampleDataset
+for i in range(10000): 
+    oldMenuSample = np.random.choice(oldMenu, size = len(oldMenu))
+    newMenuSample = np.random.choice(newMenu, size = len(newMenu))
 
-    Args:
-        data (list or numpy.ndarray): The sample data.
-        confidence (float, optional): The confidence level (e.g., 0.90 for 90%). Defaults to 0.90.
-        n_bootstrap (int, optional): The number of bootstrap samples. Defaults to 10000.
+    oldMenuBar = np.mean(oldMenuSample)
+    newMenuBar = np.mean(newMenuSample)
 
-    Returns:
-        tuple: A tuple containing the lower and upper bounds of the confidence interval.
-    """
-    
-    if len(data) < 2:
-      raise ValueError("Data must contain at least two values")
-    
-    # Generate bootstrap samples
-    bootstrap_samples = np.random.choice(data, size=(n_bootstrap, len(data)), replace=True)
+    twoSampleDataset.append(newMenuBar - oldMenuBar)
 
-    # Calculate the mean of each bootstrap sample
-    bootstrap_means = np.mean(bootstrap_samples, axis=1)
+#Calculate Statistical Parameters
+mean = np.mean(twoSampleDataset) 
+standard_error_of_mean = st.sem(twoSampleDataset)
+degrees_of_freedom = len(twoSampleDataset) - 1
+t_critical = st.t.ppf((1 + confidence) / 2, degrees_of_freedom)
+margin_of_error = t_critical * standard_error_of_mean
 
-    # Determine the confidence interval bounds
-    alpha = 1 - confidence
-    lower_percentile = alpha / 2 * 100
-    upper_percentile = (1 - alpha / 2) * 100
-    lower_bound = np.percentile(bootstrap_means, lower_percentile)
-    upper_bound = np.percentile(bootstrap_means, upper_percentile)
+#Calculate Lower and Upper Bound for 95% Confidence Interval
+lower_bound = mean - margin_of_error  
+upper_bound = mean + margin_of_error
 
-    return lower_bound, upper_bound
-
-
-
-
-
-
-
-
-data = list(oldMenu) + list(newMenu)
-print(len(data))
-print(median(data))
-
-result = nonparametric_confidence_interval(data, confidence=0.95, n_bootstrap=10000)
-print(result)
-
+#Show actual mean and confidence interval
+avg = np.mean(newMenu) - np.mean(oldMenu) 
+print("Avg Bi-Weekly Loss: " + str(avg))
+print("95% Confidence Interval: " + str(lower_bound) + " - " + str(upper_bound))
