@@ -4,7 +4,7 @@
 from statistics import median
 from scipy.stats import mannwhitneyu
 import scipy.stats as st
-
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
@@ -50,7 +50,7 @@ else:
 twoSampleDataset = list() 
 confidence = 0.95
 
-#Generate 10,000 random samples means from both menu datasets and store in twoSampleDataset
+#Generate 10,000 random samples means from both menu datasets, take their difference, and store in twoSampleDataset
 for i in range(10000): 
     oldMenuSample = np.random.choice(oldMenu, size = len(oldMenu))
     newMenuSample = np.random.choice(newMenu, size = len(newMenu))
@@ -75,3 +75,36 @@ upper_bound = mean + margin_of_error
 avg = np.mean(newMenu) - np.mean(oldMenu) 
 print("Avg Bi-Weekly Loss: " + str(avg))
 print("95% Confidence Interval: " + str(lower_bound) + " - " + str(upper_bound))
+
+
+
+
+#Simulation
+sampleSize = 20
+oldMenuSim = list()
+newMenuSim = list()
+sampleSizeList = list()
+pValList = list()
+
+#Simulate P-Value across different random samples up to a 1000
+while sampleSize <= 1000:
+    oldMenuSim = np.random.choice(oldMenu, size = sampleSize)
+    newMenuSim = np.random.choice(newMenu, size = sampleSize)
+
+    stat, p_val = mannwhitneyu(newMenuSim, oldMenuSim, alternative='less')
+    sampleSizeList.append(sampleSize)
+    pValList.append(p_val)
+
+    sampleSize += 20
+
+pValSim = pd.DataFrame({'Sample Size':sampleSizeList, 'P-Value':pValList})
+
+x = pValSim['Sample Size']
+y = pValSim['P-Value']
+
+plt.plot(x, y, linestyle='--', marker='o', color='green', linewidth=4)
+plt.xlabel("Sample Size")
+plt.ylabel("P-Value")
+plt.title("P-Value Simulated")
+plt.grid(True)
+plt.show()
