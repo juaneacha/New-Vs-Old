@@ -55,10 +55,10 @@ for i in range(10000):
     oldMenuSample = np.random.choice(oldMenu, size = len(oldMenu))
     newMenuSample = np.random.choice(newMenu, size = len(newMenu))
 
-    oldMenuBar = np.mean(oldMenuSample)
-    newMenuBar = np.mean(newMenuSample)
+    oldMenuXbar = np.mean(oldMenuSample)
+    newMenuXbar = np.mean(newMenuSample)
 
-    twoSampleDataset.append(newMenuBar - oldMenuBar)
+    twoSampleDataset.append(newMenuXbar - oldMenuXbar)
 
 #Calculate Statistical Parameters
 mean = np.mean(twoSampleDataset) 
@@ -80,14 +80,14 @@ print("95% Confidence Interval: " + str(lower_bound) + " - " + str(upper_bound))
 
 
 #Simulation
-sampleSize = 20
+sampleSize = 5
 oldMenuSim = list()
 newMenuSim = list()
 sampleSizeList = list()
 pValList = list()
 
-#Simulate P-Value across different random samples up to a 1000
-while sampleSize <= 1000:
+#Simulate P-Value across different random samples up to a 500
+while sampleSize <= 500:
     oldMenuSim = np.random.choice(oldMenu, size = sampleSize)
     newMenuSim = np.random.choice(newMenu, size = sampleSize)
 
@@ -95,16 +95,18 @@ while sampleSize <= 1000:
     sampleSizeList.append(sampleSize)
     pValList.append(p_val)
 
-    sampleSize += 20
+    sampleSize += 5
 
 pValSim = pd.DataFrame({'Sample Size':sampleSizeList, 'P-Value':pValList})
 
 x = pValSim['Sample Size']
 y = pValSim['P-Value']
 
-plt.plot(x, y, linestyle='--', marker='o', color='green', linewidth=4)
+plt.plot(x, y, linestyle='--', marker='o', color='green', linewidth=1)
 plt.xlabel("Sample Size")
 plt.ylabel("P-Value")
 plt.title("P-Value Simulated")
 plt.grid(True)
 plt.show()
+
+print(pValSim)
