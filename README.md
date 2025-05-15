@@ -36,7 +36,7 @@ It is the probability of a hypothesis test correctly rejecting the null hypothes
 This is the gross revenue 3 months before and 5 months after the menu change. Gross revenue peaks at the introduction of the new menu (Orange), and starts to dwindle thereafter. The following graph quantifies this loss.
 
 **Old vs New Menu**
-![](Old-vs-New Menu.png)
+![](Old-vs-New-Menu.png)
 After 6 weeks, gross revenue for the new menu average at $2318.2 dollars for this server which is $790.3 or 34.1% less than the old menu in the same amount of time. This 34.1% average loss in revenue requires further investigation to determine that it is not obtained merely by chance. A statistical test can be deployed to determine that this result has statistical significance 
 
 **Mann-Whitney U-test**
