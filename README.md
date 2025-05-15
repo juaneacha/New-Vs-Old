@@ -32,11 +32,11 @@ It is the probability of a hypothesis test correctly rejecting the null hypothes
 ## Findings
 
 **Gross Revenue Over Time**
-![](Gross Revenue.png)
+![](Gross-Revenue.png)
 This is the gross revenue 3 months before and 5 months after the menu change. Gross revenue peaks at the introduction of the new menu (Orange), and starts to dwindle thereafter. The following graph quantifies this loss.
 
 **Old vs New Menu**
-![](Old vs New Menu.png)
+![](Old-vs-New Menu.png)
 After 6 weeks, gross revenue for the new menu average at $2318.2 dollars for this server which is $790.3 or 34.1% less than the old menu in the same amount of time. This 34.1% average loss in revenue requires further investigation to determine that it is not obtained merely by chance. A statistical test can be deployed to determine that this result has statistical significance 
 
 **Mann-Whitney U-test**
@@ -44,7 +44,7 @@ After 6 weeks, gross revenue for the new menu average at $2318.2 dollars for thi
 The Mann-Whitney U-test method uses two different lists, newMenu and oldMenu. Each list is a subset of the values that belong to the new and old menus, respectively. The parameter “alternative” (for the alternative hypothesis) is set to “less” since our null hypothesis is that the new menu’s profit is higher.  The function is executed, outputting 3 for the U-statistic and  0.01 for the P-value. When the P-value is compared to the 0.05 alpha, it can be concluded that the new menu does not increase revenue.
 
 **Confidence Interval**
-![](Confidence Interval.png)
+![](Confidence-Interval.png)
 The confidence interval is calculated by generating and collecting the difference of 10,000 sample means for the old and new menu, respectively. In other words, 10,000 sample means were generated for the old menu, and another 10,000 sample means were generated for the new menu. The difference between the old and new menu sample means was taken as they were generated and collected in a series called twoSampleDataset. This variable consists of the 10,000 sample means collected, and it is used to calculate statistical parameters. These parameters are then used to calculate a 95% confidence interval.
 
 Our actual mean or average bi-weekly loss is -790.2. This confirms our initial 34% average loss result, and fits our 95% confidence interval since it falls within -798.1 and -788.6. This means we can expect to lose anywhere from 788.6 to 798.1 every two weeks per server. The robustness of this confidence interval is further supported by power.
