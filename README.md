@@ -1,8 +1,8 @@
-# Ala's New Menu: AB-Test
+# New vs Old Menu: Which Generates Higher Revenue?
 ![](Menu.png)
 
 ## Executive Summary
-Ala, an Eastern Mediterranean restaurant, has been losing revenue for the past few months. To increase revenue and provide higher quality food, Ala changes its menu around mid-year. An effective menu change results in a 10 - 15% increase in revenue. The earnings of a server at this restaurant are used to determine whether or not the change in menu was a success. Through A/B testing using Mann-Whitney U Test, Confidence Interval, and Power, it was found the new menu performs 34% worse than the old menu. A restoration of the old menu with a few dishes changed was recommended. 
+Ala, an Eastern Mediterranean restaurant, has been losing revenue for the past few months. To increase revenue and provide higher quality food, Ala changes its menu mid-year. An effective menu change typically results in a 10 - 15% increase in revenue. The earnings of a server at this restaurant are used to determine whether or not the change in menu was a success. Through A/B testing using Mann-Whitney U Test, Confidence Interval, and Power, it was found the new menu performs 34% worse than the old menu. A restoration of the old menu with a few dishes changed was recommended. 
 
 ----
 # Background and Overview
