@@ -10,7 +10,7 @@ Restaurants change their menu, or at least tweak some of their dishes, seasonall
 
 ----
 ## Data Structure Overview
-![](Data_Structure.png)
+![](Data_Structure.png)<br />
 The data comes from bi-weekly checks issued to the employee. Twenty observations were captured in the dataset. From the checks, the features week, check date, gross earnings, worked hours, and hourly rate are extracted for each observation. Features such as gross tip, menu, and overtime hourly rate are later engineered. Gross tip hourly rate is [gross earnings - (hourly rate x worked hours)]/worked hours. It is engineered to check if tips behave differently from hourly rate wages and overall gross earnings over time. The menu is engineered to keep track of revenue (Gross earnings) over time as it transitions from the old menu to the new one. Overtime hourly rate is generated to be used in calculating the gross tip hourly rate. 
  
  ---- 
@@ -44,7 +44,7 @@ After 6 weeks, gross revenue for the new menu average at $2318.2 dollars for thi
 The Mann-Whitney U-test method uses two different lists, newMenu and oldMenu. Each list is a subset of the values that belong to the new and old menus, respectively. The parameter “alternative” (for the alternative hypothesis) is set to “less” since our null hypothesis is that the new menu’s profit is higher.  The function is executed, outputting 3 for the U-statistic and  0.01 for the P-value. When the P-value is compared to the 0.05 alpha, it can be concluded that the new menu does not increase revenue.
 
 **Confidence Interval**
-![](Confidence-Interval.png)
+![](Confidence-Interval.png)<br />
 The confidence interval is calculated by generating and collecting the difference of 10,000 sample means for the old and new menu, respectively. In other words, 10,000 sample means were generated for the old menu, and another 10,000 sample means were generated for the new menu. The difference between the old and new menu sample means was taken as they were generated and collected in a series called twoSampleDataset. This variable consists of the 10,000 sample means collected, and it is used to calculate statistical parameters. These parameters are then used to calculate a 95% confidence interval.
 
 Our actual mean or average bi-weekly loss is -790.2. This confirms our initial 34% average loss result, and fits our 95% confidence interval since it falls within -798.1 and -788.6. This means we can expect to lose anywhere from 788.6 to 798.1 every two weeks per server. The robustness of this confidence interval is further supported by power.
