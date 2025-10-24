@@ -5,7 +5,7 @@
 Ala, an Eastern Mediterranean restaurant, has been losing revenue for the past few months. To increase revenue and provide higher quality food, Ala changes its menu mid-year. An effective menu change typically results in a 10 - 15% increase in revenue. The earnings of a server at this restaurant are used to determine whether or not the change in menu was a success. Through A/B testing using Mann-Whitney U Test, Confidence Interval, and Power, it was found the new menu performs 34% worse than the old menu. A restoration of the old menu with a few dishes changed was recommended. 
 
 ----
-# Background and Overview
+## Background and Overview
 Restaurants change their menu, or at least tweak some of their dishes, seasonally. This is done for many reasons, including increasing customer retention rates, increasing customer acquisition rates, or simply increasing revenue. In fact, a restaurant’s revenue can increase by 10 - 15% after a menu change <a href="https://getsling.com/blog/menu-engineering/#:~:text=In%20most%20cases%2C%20when%20you,process%20every%20year%20or%20two." target="_blank">(Sling)</a>. Ala, an Eastern Mediterranean Restaurant, recently changed its menu with the main goal of increasing its current revenue. Ala wants to see if the new menu performs better than the old menu in revenue generation. Using a server’s gross income data, the new and old menu are A/B tested to determine which is better at generating revenue.
 
 ----
